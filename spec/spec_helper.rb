@@ -1,0 +1,1 @@
+require "contest_fetcher"

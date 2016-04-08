@@ -1,5 +1,5 @@
 require "contest_fetcher/version"
+require "contest_fetcher/revolver"
 
 module ContestFetcher
-  # Your code goes here...
 end
