@@ -33,7 +33,7 @@ describe ContestFetcher::Revolver do
       it { should include "Another Contest" }
     end
 
-    context :multi_fetcher do
+    context :multi do
       before { revolver.add_fetcher super_contest.new }
       before { revolver.add_fetcher another_contest.new }
       subject { revolver.contests }
