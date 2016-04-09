@@ -1,24 +1,6 @@
 require "spec_helper"
 
 describe ContestFetcher::Revolver do
-  let(:revolver) { ContestFetcher::Revolver.new }
-
-  let(:super_contest) do
-    Class.new do
-      def fetch
-        ["Super Contest"]
-      end
-    end
-  end
-
-  let(:another_contest) do
-    Class.new do
-      def fetch
-        ["Another Contest"]
-      end
-    end
-  end
-
   describe :contests do
     context :empty do
       subject { revolver.contests }
@@ -39,6 +21,24 @@ describe ContestFetcher::Revolver do
       subject { revolver.contests }
       it { should include "Super Contest" }
       it { should include "Another Contest" }
+    end
+  end
+
+  let(:revolver) { ContestFetcher::Revolver.new }
+
+  let(:super_contest) do
+    Class.new do
+      def fetch
+        ["Super Contest"]
+      end
+    end
+  end
+
+  let(:another_contest) do
+    Class.new do
+      def fetch
+        ["Another Contest"]
+      end
     end
   end
 end
