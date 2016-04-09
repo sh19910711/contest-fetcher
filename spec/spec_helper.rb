@@ -1,6 +1,7 @@
 require "vcr"
 require "contest_fetcher"
 require "contest/codeforces"
+require "contest/codechef"
 
 VCR.configure do |conf|
   conf.cassette_library_dir = "spec/fixtures/vcr"

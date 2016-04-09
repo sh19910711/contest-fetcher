@@ -11,6 +11,16 @@ describe Contest::Codeforces, :vcr => vcr_opts do
       it { expect(subject[:start_time_sec]).to eq 1266580800 }
       it { expect(subject[:duration_sec]).to eq 120 * 60 }
     end
+
+    context :before_time do
+      subject { fetcher.contests(1266580800-1).map {|c| c[:name] } }
+      it { should include "Codeforces Beta Round #1" }
+    end
+
+    context :after_time do
+      subject { fetcher.contests(1266580800+1).map {|c| c[:name] } }
+      it { should_not include "Codeforces Beta Round #1" }
+    end
   end
 
   let(:fetcher) { Contest::Codeforces.new }
