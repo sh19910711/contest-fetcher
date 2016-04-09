@@ -27,7 +27,6 @@ describe Contest::CodeChef, :vcr => vcr_opts do
   end
 
   before(:all) do
-    puts "before all"
     WebMock.stub_request(:get, "https://www.codechef.com/contests").to_return(
       :body => [
         "<h3>Future Contests</h3>",
