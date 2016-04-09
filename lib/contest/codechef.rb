@@ -17,6 +17,8 @@ module Contest
           :start_time_sec => Time.parse("#{item[2]} IST").to_i,
           :duration_sec => (Time.parse("#{item[3]} IST") - Time.parse("#{item[2]} IST")).to_i,
         }
+      end.select do |item|
+        item[:start_time_sec] >= t
       end
     end
   end
