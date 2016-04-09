@@ -1,13 +1,10 @@
 require "spec_helper"
 
-describe Contest::Codeforces do
+vcr_opts = { :cassette_name => "codeforces" }
+describe Contest::Codeforces, :vcr => vcr_opts do
   describe :contests do
     context :element do
-      subject do
-        VCR.use_cassette :codeforces do
-          fetcher.contests.last
-        end
-      end
+      subject { fetcher.contests.last }
       it { expect(subject[:contest]).to eq "Codeforces" }
       it { expect(subject[:contest_short]).to eq "CF" }
       it { expect(subject[:name]).to eq "Codeforces Beta Round #1" }
