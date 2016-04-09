@@ -10,8 +10,8 @@ module Contest
           :contest => "Codeforces",
           :contest_short => "CF",
           :name => c.name,
-          :start => c.startTimeSeconds,
-          :duration => c.durationSeconds,
+          :start_time_sec => c.startTimeSeconds,
+          :duration_sec => c.durationSeconds,
         }
       end
     end

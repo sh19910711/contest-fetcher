@@ -1,12 +1,13 @@
-require "contest/codeforces"
-require "contest_fetcher"
 require "vcr"
+require "contest_fetcher"
+require "contest/codeforces"
 
 VCR.configure do |conf|
+  conf.cassette_library_dir = "spec/fixtures/vcr"
+  conf.configure_rspec_metadata!
   conf.hook_into :webmock
   conf.default_cassette_options = {
     :serialize_with => :psych,
     :re_record_interval => 24 * 3600,
   }
-  conf.allow_http_connections_when_no_cassette = true
 end
