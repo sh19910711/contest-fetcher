@@ -3,8 +3,11 @@ require "spec_helper"
 vcr_opts = { :cassette_name => "codechef" }
 describe Contest::CodeChef, :vcr => vcr_opts do
   describe :contests do
+    subject { fetcher.contests }
+    it { expect(subject.length).to eq 2 }
+
     context :element do
-      subject { fetcher.contests.last }
+      subject { fetcher.contests.first }
       it { expect(subject[:contest]).to eq "CodeChef" }
       it { expect(subject[:contest_short]).to be_nil }
       it { expect(subject[:name]).to eq "April Cook-Off 2016" }
@@ -33,6 +36,12 @@ describe Contest::CodeChef, :vcr => vcr_opts do
         "<td>April Cook-Off 2016</td>",
         "<td>2016-04-17 21:30:00</td>",
         "<td>2016-04-18 00:00:00</td>",
+        "</tr>",
+        "<tr>",
+        "<td>MARCH16</td>",
+        "<td>March Challenge 2016</td>",
+        "<td>2016-03-04 15:00:00</td>",
+        "<td>2016-03-15 15:00:00</td>",
         "</tr>",
         "<h3>Past Contests</h3>",
       ].join("\n")
