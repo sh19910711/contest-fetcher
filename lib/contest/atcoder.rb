@@ -7,12 +7,5 @@ module Contest
       others = 'atcoder.jp_drp3qk1qgpb84vcdj418fsbo7k@group.calendar.google.com'
       items(regulars).concat items(others)
     end
-
-    private
-      attr_reader :service
-
-      def items(calendar)
-        service.list_events(calendar).items
-      end
   end
 end
