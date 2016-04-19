@@ -1,7 +1,10 @@
+require "contest"
 require "codeforces"
 
 module Contest
   class Codeforces
+    extend Contest::Findable
+
     def contests(t = 0)
       all_contests.select do |c|
         c[:start_time_sec] >= t
