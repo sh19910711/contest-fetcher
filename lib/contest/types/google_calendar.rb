@@ -2,7 +2,7 @@ require "google/api_client/auth/key_utils"
 require "google/apis/calendar_v3"
 
 module Contest
-  module Utils
+  module Types
     class GoogleCalendar
       def initialize(client_email, private_key, private_pass)
         @service = Google::Apis::CalendarV3::CalendarService.new

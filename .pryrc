@@ -1,7 +1,5 @@
 require "contest_fetcher"
-require "contest/atcoder"
-require "contest/codeforces"
-require "contest/codechef"
+require "contest/all"
 
 require_relative "spec/helpers/gapi"
 include Helpers::GAPI

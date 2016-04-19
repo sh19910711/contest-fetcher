@@ -1,8 +1,8 @@
 require "contest/mixins"
-require "contest/utils/html"
+require "contest/types/html"
 
 module Contest
-  class CodeChef
+  class CodeChef < Types::HTML
     extend Mixins::Findable
 
     def contests(t = 0)
@@ -13,7 +13,7 @@ module Contest
 
     private
       def table_items
-        Utils::HTML.http_get("https://www.codechef.com/contests")
+        http_get("https://www.codechef.com/contests")
           .match(/<h3>Future Contests<\/h3>(.*?)<h3>/m)[1]
           .scan(/<tr>.*?<\/tr>/m)
       end
@@ -26,7 +26,7 @@ module Contest
         {
           :contest => "CodeChef",
           :id => item[0],
-          :name => Utils::HTML.strip_html(item[1]),
+          :name => strip_html(item[1]),
           :start_time_sec => Time.parse("#{item[2]} IST").to_i,
           :duration_sec => (Time.parse("#{item[3]} IST") - Time.parse("#{item[2]} IST")).to_i,
         }

@@ -1,8 +1,8 @@
 require "contest/mixins"
-require "contest/utils/google_calendar"
+require "contest/types/google_calendar"
 
 module Contest
-  class AtCoder < Utils::GoogleCalendar
+  class AtCoder < Types::GoogleCalendar
     include Mixins::Findable
 
     def contests(t = 0)

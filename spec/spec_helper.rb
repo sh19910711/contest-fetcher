@@ -1,8 +1,6 @@
 require "vcr"
 require "contest_fetcher"
-require "contest/codeforces"
-require "contest/codechef"
-require "contest/atcoder"
+require "contest/all"
 
 require_relative "helpers/gapi"
 
