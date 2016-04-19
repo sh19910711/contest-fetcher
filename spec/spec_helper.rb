@@ -11,7 +11,7 @@ module GAPI
     end
 
     def private_key
-      ENV["GAPI_PRIVATE_KEY"]
+      ENV["GAPI_PRIVATE_KEY"].gsub("\\n", "\n")
     end
 
     def private_pass
