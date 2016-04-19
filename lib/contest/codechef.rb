@@ -3,7 +3,7 @@ require "contest/types/html"
 module Contest
   class CodeChef < Types::HTML
     def contests(t = 0)
-      table_items.map(&method(:table_item)).map(&method(:convert)).select do |item|
+      table_items.map(&method(:table_item)).map(&method(:convert)).map(&method(:merge_info)).select do |item|
         item[:start_time_sec] >= t
       end
     end
@@ -19,9 +19,15 @@ module Contest
         item.scan(/<td.*?>(.*?)<\/td>/).flatten
       end
 
+      def merge_info(item)
+        item.merge(
+          :contest => "CodeChef",
+          :regions => ["en"],
+        )
+      end
+
       def convert(item)
         {
-          :contest => "CodeChef",
           :id => item[0],
           :name => strip_html(item[1]),
           :start_time_sec => Time.parse("#{item[2]} IST").to_i,
