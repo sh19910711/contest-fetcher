@@ -28,7 +28,6 @@ module Contest
           end.map do |item|
             {
               :name => item.summary,
-              :start_time => item.start.date_time,
               :start_time_sec => item.start.date_time.to_time.to_i,
             }
           end
