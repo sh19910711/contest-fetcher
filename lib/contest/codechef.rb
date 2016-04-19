@@ -1,10 +1,7 @@
-require "contest/mixins"
 require "contest/types/html"
 
 module Contest
   class CodeChef < Types::HTML
-    extend Mixins::Findable
-
     def contests(t = 0)
       table_items.map(&method(:table_item)).map(&method(:convert)).select do |item|
         item[:start_time_sec] >= t

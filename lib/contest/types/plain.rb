@@ -1,6 +1,6 @@
 module Contest
-  module Mixins
-    module Findable
+  module Types
+    class Plain
       def find(name)
         contests.select {|item| item[:name].match(name) }
       end

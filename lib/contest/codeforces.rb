@@ -1,10 +1,8 @@
-require "contest/mixins"
+require "contest/types/plain"
 require "codeforces"
 
 module Contest
-  class Codeforces
-    extend Mixins::Findable
-
+  class Codeforces < Types::Plain
     def contests(t = 0)
       all_contests.select do |c|
         c[:start_time_sec] >= t
