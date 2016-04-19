@@ -22,7 +22,12 @@ module Utils
       attr_reader :service
 
       def items(calendar)
-        service.list_events(calendar).items
+        service.list_events(calendar).items.map do |item|
+          {
+            :name => item.summary,
+            :start_time_sec => item.start.date_time.to_s,
+          }
+        end
       end
   end
 end

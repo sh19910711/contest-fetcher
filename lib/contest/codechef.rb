@@ -7,9 +7,17 @@ module Contest
         .match(/<h3>Future Contests<\/h3>(.*?)<h3>/m)[1]
         .scan(/<tr>.*?<\/tr>/m)
 
-      items.map do |item|
+      items.map(&method(:table_item)).map(&method(:convert)).select do |item|
+        item[:start_time_sec] >= t
+      end
+    end
+
+    private
+      def table_item(item)
         item.scan(/<td.*?>(.*?)<\/td>/).flatten
-      end.map do |item|
+      end
+
+      def convert(item)
         {
           :contest => "CodeChef",
           :id => item[0],
@@ -17,9 +25,6 @@ module Contest
           :start_time_sec => Time.parse("#{item[2]} IST").to_i,
           :duration_sec => (Time.parse("#{item[3]} IST") - Time.parse("#{item[2]} IST")).to_i,
         }
-      end.select do |item|
-        item[:start_time_sec] >= t
       end
-    end
   end
 end
