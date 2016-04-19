@@ -1,9 +1,9 @@
-require "contest"
+require "contest/mixins"
 require "codeforces"
 
 module Contest
   class Codeforces
-    extend Contest::Findable
+    extend Mixins::Findable
 
     def contests(t = 0)
       all_contests.select do |c|

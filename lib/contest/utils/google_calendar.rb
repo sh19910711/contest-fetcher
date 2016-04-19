@@ -23,10 +23,13 @@ module Contest
         attr_reader :service
 
         def items(calendar)
-          service.list_events(calendar).items.map do |item|
+          service.list_events(calendar).items.select do |item|
+            item.start.date_time.to_s != ""
+          end.map do |item|
             {
               :name => item.summary,
-              :start_time_sec => item.start.date_time.to_s,
+              :start_time => item.start.date_time,
+              :start_time_sec => item.start.date_time.to_time.to_i,
             }
           end
         end

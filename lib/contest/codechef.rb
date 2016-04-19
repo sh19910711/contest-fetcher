@@ -1,9 +1,9 @@
-require "contest"
+require "contest/mixins"
 require "contest/utils/html"
 
 module Contest
   class CodeChef
-    extend Contest::Findable
+    extend Mixins::Findable
 
     def contests(t = 0)
       table_items.map(&method(:table_item)).map(&method(:convert)).select do |item|
