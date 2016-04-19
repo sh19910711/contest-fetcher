@@ -15,7 +15,6 @@ module Contest
       def merge_info(item)
         item.merge(
           :contest => "AtCoder",
-          :regions => ["jp"],
         )
       end
   end

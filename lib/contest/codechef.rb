@@ -22,7 +22,6 @@ module Contest
       def merge_info(item)
         item.merge(
           :contest => "CodeChef",
-          :regions => ["en"],
         )
       end
 

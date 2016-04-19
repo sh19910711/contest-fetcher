@@ -14,7 +14,6 @@ module Contest
         item.merge(
           :contest => "Codeforces",
           :contest_short => "CF",
-          :regions => ["en", "ru"],
         )
       end
 
