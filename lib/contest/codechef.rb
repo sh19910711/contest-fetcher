@@ -3,16 +3,18 @@ require "contest/utils"
 module Contest
   class CodeChef
     def contests(t = 0)
-      items = http_get("https://www.codechef.com/contests")
-        .match(/<h3>Future Contests<\/h3>(.*?)<h3>/m)[1]
-        .scan(/<tr>.*?<\/tr>/m)
-
-      items.map(&method(:table_item)).map(&method(:convert)).select do |item|
+      table_items.map(&method(:table_item)).map(&method(:convert)).select do |item|
         item[:start_time_sec] >= t
       end
     end
 
     private
+      def table_items
+        http_get("https://www.codechef.com/contests")
+          .match(/<h3>Future Contests<\/h3>(.*?)<h3>/m)[1]
+          .scan(/<tr>.*?<\/tr>/m)
+      end
+
       def table_item(item)
         item.scan(/<td.*?>(.*?)<\/td>/).flatten
       end
