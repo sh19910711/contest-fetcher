@@ -1,9 +1,11 @@
 require "net/http"
-require "contest/types/plain"
+require "contest/types/mixin"
 
 module Contest
   module Types
-    class HTML < Plain
+    class HTML
+      include Mixin
+
       protected
         def http_get(url)
           Net::HTTP.get_response(URI.parse(url)).body

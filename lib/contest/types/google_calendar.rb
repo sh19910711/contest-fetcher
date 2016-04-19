@@ -1,10 +1,12 @@
 require "google/api_client/auth/key_utils"
 require "google/apis/calendar_v3"
-require "contest/types/plain"
+require "contest/types/mixin"
 
 module Contest
   module Types
-    class GoogleCalendar < Plain
+    class GoogleCalendar
+      include Mixin
+
       def initialize(client_email, private_key, private_pass)
         @service = Google::Apis::CalendarV3::CalendarService.new
         key = OpenSSL::PKey::RSA.new(private_key, private_pass)
