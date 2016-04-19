@@ -29,9 +29,19 @@ describe Contest::AtCoder, :vcr => vcr_opts do
     it { expect(subject[:name]).to eq "AtCoder Regular Contest #016" }
     it { expect(subject[:contest_short]).to be nil }
     it { expect(subject[:start_time_sec]).to eq arc016_start }
+    it { expect(subject[:duration_sec]).to eq 90 * 60 }
+  end
+
+  describe :abc023 do
+    subject { fetcher.find_first "AtCoder Beginner Contest 023" }
+    it { expect(subject[:name]).to eq "AtCoder Beginner Contest 023" }
+    it { expect(subject[:contest_short]).to be nil }
+    it { expect(subject[:start_time_sec]).to eq abc023_start }
+    it { expect(subject[:duration_sec]).to eq 120 * 60 }
   end
 
   include Helpers::GAPI
   let(:fetcher) { Contest::AtCoder.new(gapi_client_email, gapi_private_key, gapi_private_pass) }
   let(:arc016_start) { DateTime.parse("2013/11/04 21:00:00 JST").to_time.to_i }
+  let(:abc023_start) { DateTime.parse("2015/05/09 21:00:00 JST").to_time.to_i }
 end

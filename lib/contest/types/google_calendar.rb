@@ -20,17 +20,27 @@ module Contest
       end
 
       protected
-        attr_reader :service
-
         def items(calendar)
           service.list_events(calendar).items.select do |item|
             item.start.date_time.to_s != ""
           end.map do |item|
             {
               :name => item.summary,
-              :start_time_sec => item.start.date_time.to_time.to_i,
+              :start_time_sec => start_sec(item),
+              :duration_sec => end_sec(item) - start_sec(item),
             }
           end
+        end
+
+      private
+        attr_reader :service
+
+        def end_sec(item)
+          item.end.date_time.to_time.to_i
+        end
+
+        def start_sec(item)
+          item.start.date_time.to_time.to_i
         end
     end
   end
